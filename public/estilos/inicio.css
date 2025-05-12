@@ -1,0 +1,257 @@
+:root {
+	--main-color: #131313;
+	--blanco: #ffffff;
+}
+body
+{
+	background-color: #131313;
+	font-family: "Maven Pro", sans-serif;
+	color: #fff;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+
+}
+.header{
+	/* background-color: #f8f9fa; */
+	text-align: center;
+	display: flex;
+	position: relative;
+	align-items: flex-start;
+	justify-content: space-between;
+	z-index: 5;
+	margin: 0;
+}
+.logo{
+	height: 140px;
+	width: auto;
+	position: relative;
+
+}
+.logo-breez
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 6px #841111, 0 0 8px #5a0101, 0 0 15px #373537, 0 0 10px #313232;
+}
+.navegacion
+{
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	height: 4.5rem;
+	gap: 1rem;
+	background-color: #ffffff48;
+	/* opacity: 0.5; */
+	width: 100%;
+	padding-right: 0.5rem;
+}
+.link-nav, .btn-llamar{
+	text-decoration: none;
+	color: var(--blanco);
+	font-family: "Maven Pro", sans-serif;
+	font-size: 1.1rem;
+	letter-spacing: 0.5px;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	transition: all 0.3s ease-in-out;
+	z-index: 100;
+}
+.btn-llamar{
+	background-color: #D85B5B;
+	color: #FFFFFF;
+	border: 2px solid #D85B5B;
+	margin: 0 3rem 0 1rem;
+	border-radius: 2rem;
+	padding: 0.5rem 2.3rem;
+}
+/* PRIMER SECCION */
+.priemro-escaparate{
+	background-image:url(/img/escaparate.png); ;
+	background-size:  cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 38rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	z-index: -10;
+	top: 0;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.8);
+		z-index: -1;
+	}
+	position: absolute;
+
+}
+.imagen-escaparate{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+
+}
+.bloque-imagen-escaparate{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1rem;
+}
+.titulo-inicio{
+	font-family: "Maven Pro", sans-serif;
+	font-size: 3.5rem;
+	color: var(--blanco);
+	margin: 8rem 0 0 0;
+	padding: 0;
+	letter-spacing: 1px;
+	text-align: center;
+	text-shadow: 0 0 1px #54136e, 0 0 0px #5a0101, 0 0 2px #301530, 0 0 4px #313232;
+}
+.catalogo {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 30% 2rem 2rem 2rem;
+
+  }
+  
+  .bloque-par {
+	display: flex;
+	gap: 4.1rem;
+	justify-content: center;
+  }
+  
+  /* Las cartas ahora son solo contenedores para la imagen completa */
+  .carta-izquierda,
+  .carta-derecha {
+	width: 640px;
+	height: 430px;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	position: relative;
+  }
+  
+  /* Imagen de fondo */
+  .carta-izquierda img,
+  .carta-derecha img {
+	background-color: #000; /* por si la imagen no carga */
+  }
+  
+  /* Imagen que llena toda la carta */
+  .carta-izquierda img,
+.carta-derecha img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+object-position: center center;
+}
+
+.carta-derecha::after,
+.carta-izquierda::after {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.3); 
+pointer-events: none;
+}
+  
+  .carta-izquierda .info-carta,
+.carta-derecha .info-carta {
+  position: absolute; /* ← esto hace que se superponga */
+  bottom: 0;           /* ← se pega a la parte inferior */
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  margin-top: 40%;
+  padding: 0 0 2rem 2rem;
+  text-align: left;
+  box-sizing: border-box;
+  opacity: 0.9; 
+	z-index: 100;
+}
+.carta{
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.carta-unica {
+	margin: 0 auto;
+  }
+  
+.estado-carta{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.5rem 1rem;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: var(--blanco);
+	font-size: 0.9rem;
+	border-radius: 0 0 0 10px;
+	z-index: 10;
+}  
+.Texto-inf-carta{
+	margin-top: 50%;
+}
+
+.carta-link {
+	display: block;
+	transition: transform 0.3s ease-in-out;
+}
+
+.carta-link:hover {
+	transform: scale(1.05);
+	filter: brightness(1.1);
+
+}
+.btn-ver-mas{
+	background-color: #FFFFFF;
+	color: #D85B5B;
+	border: 2px solid #FFFFFF;
+	margin: 0 3rem 0 1rem;
+	border-radius: 2rem;
+	padding: 0.5rem 2.3rem;
+	text-decoration: none;
+	font-family: "Maven Pro", sans-serif;
+	font-size: 1.1rem;
+	letter-spacing: 0.5px;
+	transition: all 0.3s ease-in-out;
+	z-index: 100;
+	display: block;
+	margin: 0 auto;
+	margin-top: 1rem;
+
+}
+.btn-ver-mas:hover{
+	background-color: #D85B5B;
+	color: #FFFFFF;
+	border-color: #D85B5B;
+}
+
+.footer{
+	margin-top: 5rem;
+	position: absolute;
+	/* bottom: 0; */
+	width: 100%;
+	background-color: #2a2626;
+	color: var(--blanco);
+	text-align: center;
+	padding: 1rem 0;
+	font-size: 0.9rem;
+}
