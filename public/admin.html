@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Page Title</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='estilos/general.css'>
+	<script src='main.js'></script>
+</head>
+<body>
+	<form id="admin-login-form" class="admin-login-form">
+		<h2>ADMIN</h2>
+		<input type="email" id="email" placeholder="Correo administrador" required >
+		<input type="password" id="password" placeholder="Contraseña" required>
+		<button type="submit">Entrar</button>
+	  </form>
+	  
+	  <script>
+	  document.getElementById('admin-login-form').addEventListener('submit', (e) => {
+		e.preventDefault();
+	  
+		const email = document.getElementById('email').value;
+		const password = document.getElementById('password').value;
+	  
+		fetch('/admin/login', {
+		  method: 'POST',
+		  headers: { 'Content-Type': 'application/json' },
+		  body: JSON.stringify({ email, password })
+		})
+		.then(res => res.json())
+		.then(data => {
+		  if (data.success) {
+			localStorage.setItem('administrador', JSON.stringify(data.administrador));
+			window.location.href = 'panel.html'; // redirige al panel de gestión
+		  } else {
+			alert(data.mensaje || 'Login fallido');
+		  }
+		});
+	  });
+	  </script>
+	  
+</body>
+</html>

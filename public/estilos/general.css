@@ -1,0 +1,55 @@
+body{
+	background-color: #f7f0f0;
+	font-family: "Maven Pro", sans-serif;
+	color: #000000;
+	/* box-sizing: border-box; */
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+.admin-login-form{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: 2px solid #000;
+	border-radius: 1rem;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	padding: 2rem;
+}
+input{
+
+	width: 100%;
+	height: 2.1rem;
+	border-radius: 0.4rem;
+	border: 1px solid #605e5e;
+	padding: 0.6rem;
+	box-sizing: border-box;
+	font-family: "Maven Pro", sans-serif;
+	font-size: 1rem;
+}
+button{
+	width: 100%;
+	height: 2.2rem;
+	border-radius: 0.4rem;
+	border: 1px solid #000000;
+	background-color: #000000;
+	color: white;
+	font-family: "Maven Pro", sans-serif;
+	font-size: 1rem;
+	cursor: pointer;
+}button:hover{
+	background-color: white;
+	color: #000000;
+	border: 1px solid #232222;
+	transition: 0.3s;
+}

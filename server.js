@@ -80,6 +80,35 @@ app.get('/vehiculos', (req, res) => {
 });
 
 // =======================
+// RUTA: Inicio sesción ADMIN
+// =======================
+app.post('/admin/login', (req, res) => {
+  const { email, password } = req.body;
+
+  const sql = `SELECT * FROM administrador WHERE email = ? AND password = ?`;
+
+  db.get(sql, [email, password], (err, administrador) => {
+    if (err) {
+      console.error('❌ Error en login admin:', err.message);
+      return res.status(500).json({ success: false });
+    }
+
+    if (administrador) {
+      res.json({
+        success: true,
+        administrador: {
+          id: administrador.id,
+          nombre: administrador.nombre,
+          email: administrador.email
+        }
+      });
+    } else {
+      res.json({ success: false, mensaje: 'Credenciales incorrectas' });
+    }
+  });
+});
+
+// =======================
 // INICIO DEL SERVIDOR
 // =======================
 const PORT = 3000;
