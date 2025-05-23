@@ -1,14 +1,70 @@
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db.sqlite');
+const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
-// Middleware
-app.use(express.static("public")); // Sirve archivos estáticos (index.html, img, css, js...)
-app.use(express.json()); // Permite leer JSON del frontend
+// Configuración de multer para guardar imágenes en /public/img/coches
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'public/img/coches'),
+  filename: (req, file, cb) => {
+    const final = Date.now() + '_' + file.originalname.replace(/\s+/g, '_');
+    cb(null, final);
+  }
+});
 
+const upload = multer({ storage });
+
+app.use(express.static('public'));
+app.use(express.json());
+
+// Ruta para añadir vehículo
+app.post('/vehiculos', upload.single('imagen'), (req, res) => {
+  const {
+    marca,
+    modelo,
+    año,
+    precio,
+    estado,
+    descripcion,
+    velocidad,
+    matricula,
+    color
+  } = req.body;
+
+  const imagen = req.file ? '/img/coches/' + req.file.filename : null;
+
+  const sql = `
+    INSERT INTO vehiculos (
+      marca, modelo, año, precio, imagen, estado, descripcion,
+      velocidad, matricula, color
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const valores = [
+    marca,
+    modelo,
+    año,
+    precio,
+    imagen,
+    estado,
+    descripcion || '',
+    velocidad,
+    matricula,
+    color
+  ];
+
+  db.run(sql, valores, function (err) {
+    if (err) {
+      console.error('❌ Error al guardar vehículo:', err.message);
+      return res.status(500).json({ success: false, error: err.message });
+    }
+
+    res.json({ success: true, id: this.lastID });
+  });
+});
 // =======================
 // RUTA: Registro de usuario
 // =======================
@@ -105,6 +161,35 @@ app.post('/admin/login', (req, res) => {
     } else {
       res.json({ success: false, mensaje: 'Credenciales incorrectas' });
     }
+  });
+});
+// =======================
+// Editar vehículo
+// =======================
+app.put('/vehiculos/:id', (req, res) => {
+  const id = req.params.id;
+  const { matricula, marca, modelo, año, color, velocidad, precio, estado } = req.body;
+
+  const sql = `
+    UPDATE vehiculos SET
+      matricula = ?, 
+      marca = ?, 
+      modelo = ?, 
+      año = ?, 
+      color = ?, 
+      velocidad = ?, 
+      precio = ?, 
+      estado = ?
+    WHERE id = ?
+  `;
+
+  db.run(sql, [matricula, marca, modelo, año, color, velocidad, precio, estado, id], function (err) {
+    if (err) {
+      console.error('❌ Error al actualizar vehículo:', err.message);
+      return res.status(500).json({ success: false, error: err.message });
+    }
+
+    res.json({ success: true, mensaje: "Vehículo actualizado correctamente" });
   });
 });
 

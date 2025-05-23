@@ -1,4 +1,5 @@
 let todosLosCoches = [];
+let cochesFiltrados = [];
 let paginaActual = 1;
 const cochesPorPagina = 5;
 
@@ -11,14 +12,20 @@ fetch("/vehiculos")
   .then((res) => res.json())
   .then((data) => {
     todosLosCoches = data;
+    cochesFiltrados = [...todosLosCoches];
     mostrarPagina(paginaActual);
   });
 
+function getDatosActuales() {
+  return cochesFiltrados.length ? cochesFiltrados : todosLosCoches;
+}
+
 function mostrarPagina(pagina) {
-  cuerpo.innerHTML = ""; 
+  cuerpo.innerHTML = "";
+  const datos = getDatosActuales();
   const inicio = (pagina - 1) * cochesPorPagina;
   const fin = inicio + cochesPorPagina;
-  const lote = todosLosCoches.slice(inicio, fin);
+  const lote = datos.slice(inicio, fin);
 
   lote.forEach((coche) => {
     const fila = document.createElement("tr");
@@ -28,9 +35,7 @@ function mostrarPagina(pagina) {
       <td>${coche.marca}</td>
       <td>${coche.modelo}</td>
       <td>${coche.año}</td>
-      <td class="${
-        coche.estado === "alquilado" ? "estado-alquilado" : "estado-disponible"
-      }">${coche.estado}</td>
+      <td class="${coche.estado === "alquilado" ? "estado-alquilado" : "estado-disponible"}">${coche.estado}</td>
       <td>${coche.color || "-"}</td>
       <td>${coche.velocidad || "-"}</td>
       <td>${coche.precio} €</td>
@@ -39,10 +44,10 @@ function mostrarPagina(pagina) {
     cuerpo.appendChild(fila);
   });
 
-  const totalPaginas = Math.ceil(todosLosCoches.length / cochesPorPagina);
+  const totalPaginas = Math.ceil(datos.length / cochesPorPagina);
   spanPagina.textContent = `Página ${pagina}`;
   btnAnterior.disabled = pagina === 1;
-  btnSiguiente.disabled = pagina === totalPaginas;
+  btnSiguiente.disabled = pagina >= totalPaginas;
 }
 
 btnAnterior.addEventListener("click", () => {
@@ -53,16 +58,14 @@ btnAnterior.addEventListener("click", () => {
 });
 
 btnSiguiente.addEventListener("click", () => {
-  const totalPaginas = Math.ceil(todosLosCoches.length / cochesPorPagina);
+  const datos = getDatosActuales();
+  const totalPaginas = Math.ceil(datos.length / cochesPorPagina);
   if (paginaActual < totalPaginas) {
     paginaActual++;
     mostrarPagina(paginaActual);
   }
 });
 
-function verCoche(id) {
-  alert("Detalles del coche ID: " + id);
-}
 let ordenActual = { campo: "id", ascendente: true };
 
 function ordenarPor(campo) {
@@ -92,8 +95,8 @@ function ordenarPor(campo) {
 
   paginaActual = 1;
   mostrarPagina(paginaActual);
+  aplicarFiltros();
 }
-let cochesFiltrados = [];
 
 function aplicarFiltros() {
   const idFiltro = document.getElementById('filtro-id').value.trim();
@@ -109,7 +112,7 @@ function aplicarFiltros() {
   });
 
   paginaActual = 1;
-  mostrarPaginaFiltrada();
+  mostrarPagina(paginaActual);
 }
 
 function resetFiltros() {
@@ -119,37 +122,9 @@ function resetFiltros() {
 
   cochesFiltrados = [...todosLosCoches];
   paginaActual = 1;
-  mostrarPaginaFiltrada();
+  mostrarPagina(paginaActual);
 }
 
-function mostrarPaginaFiltrada() {
-  cuerpo.innerHTML = '';
-  const inicio = (paginaActual - 1) * cochesPorPagina;
-  const fin = inicio + cochesPorPagina;
-  const lote = cochesFiltrados.slice(inicio, fin);
-
-  lote.forEach(coche => {
-    const fila = document.createElement('tr');
-    fila.innerHTML = `
-      <td>${coche.id}</td>
-      <td>${coche.matricula}</td>
-      <td>${coche.marca}</td>
-      <td>${coche.modelo}</td>
-      <td>${coche.año}</td>
-      <td class="${coche.estado === 'alquilado' ? 'estado-alquilado' : 'estado-disponible'}">${coche.estado}</td>
-      <td>${coche.color || '-'}</td>
-      <td>${coche.velocidad || '-'}</td>
-      <td>${coche.precio} €</td>
-      <td><button onclick="verCoche(${coche.id})">👁️</button></td>
-    `;
-    cuerpo.appendChild(fila);
-  });
-
-  const totalPaginas = Math.ceil(cochesFiltrados.length / cochesPorPagina);
-  spanPagina.textContent = `Página ${paginaActual}`;
-  btnAnterior.disabled = paginaActual === 1;
-  btnSiguiente.disabled = paginaActual >= totalPaginas;
-}
 function verCoche(id) {
   const coche = todosLosCoches.find(c => c.id === id);
   if (!coche) return;
@@ -187,16 +162,45 @@ document.getElementById('form-editar-coche').addEventListener('submit', e => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(cocheActualizado)
   })
-  .then(res => {
-    if (res.ok) {
-      alert('Vehículo actualizado');
-      cerrarPanel();
-      location.reload(); // refresca la tabla
-    } else {
-      alert('Error al guardar');
-    }
-  });
+    .then(async res => {
+      const contentType = res.headers.get("content-type");
+      if (!res.ok) throw new Error("Error de servidor");
+
+      if (contentType && contentType.includes("application/json")) {
+        return res.json();
+      } else {
+        throw new Error("La respuesta no es JSON");
+      }
+    })
+    .then(data => {
+      if (data.success) {
+        const index = todosLosCoches.findIndex(c => c.id === cocheActualizado.id);
+        if (index !== -1) todosLosCoches[index] = cocheActualizado;
+
+        const i = cochesFiltrados.findIndex(c => c.id === cocheActualizado.id);
+        if (i !== -1) cochesFiltrados[i] = cocheActualizado;
+
+        alert('Vehículo actualizado');
+        cerrarPanel();
+        mostrarPagina(paginaActual);
+      } else {
+        alert('Error al guardar: ' + (data.error || ''));
+      }
+    })
+    .catch(err => {
+      alert('Error en la solicitud: ' + err.message);
+    });
 });
+function mostrarMensaje(texto, color = '#28a745') {
+  const msg = document.getElementById('mensaje-flotante');
+  msg.textContent = texto;
+  msg.style.backgroundColor = color;
+  msg.classList.add('visible');
+  
+  setTimeout(() => {
+    msg.classList.remove('visible');
+  }, 3000); // se oculta en 3s
+}
 
 function cerrarPanel() {
   document.getElementById('panel-edicion').classList.remove('visible');
