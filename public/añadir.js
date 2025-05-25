@@ -1,24 +1,23 @@
-// Protección: solo admins
-//const empleado = JSON.parse(localStorage.getItem('empleado'));
-//if (!empleado || !empleado.email) {
-//  alert('Acceso denegado. Inicia sesión como administrador.');
-//  window.location.href = 'admin.html';
-//}
 
-// Subida y guardado
 document.getElementById('form-nuevo-coche').addEventListener('submit', e => {
   e.preventDefault();
 
   const form = e.target;
-  const formData = new FormData(form);
+  const formData = new FormData(form); // Captura todo: texto + imagen
 
-  // No convertir tipos si en la base todo es TEXT
+  // Validar imagen si se quiere (opcional)
+  const archivo = form.imagen.files[0];
+  if (archivo && !archivo.type.startsWith('image/')) {
+    alert('❌ El archivo debe ser una imagen válida.');
+    return;
+  }
+
   fetch('/vehiculos', {
     method: 'POST',
     body: formData
   })
     .then(res => {
-      if (!res.ok) throw new Error("Error del servidor");
+      if (!res.ok) throw new Error('Error al guardar en el servidor');
       return res.json();
     })
     .then(data => {
@@ -34,6 +33,7 @@ document.getElementById('form-nuevo-coche').addEventListener('submit', e => {
     });
 });
 
+// Cerrar sesión
 function cerrarSesion() {
   localStorage.removeItem('empleado');
   window.location.href = 'admin.html';

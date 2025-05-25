@@ -6,12 +6,19 @@ const db = new sqlite3.Database('./db.sqlite');
 const multer = require('multer');
 const path = require('path');
 
-// Configuración de multer para guardar imágenes en /public/img/coches
+// Asegurarse de que la carpeta exista
+const imgDir = path.join(__dirname, 'public/img/coches');
+if (!fs.existsSync(imgDir)) {
+  fs.mkdirSync(imgDir, { recursive: true });
+}
+
+// Configuración de Multer para guardar imágenes
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'public/img/coches'),
+  destination: (req, file, cb) => cb(null, imgDir),
   filename: (req, file, cb) => {
-    const final = Date.now() + '_' + file.originalname.replace(/\s+/g, '_');
-    cb(null, final);
+    const nombreLimpio = file.originalname.replace(/\s+/g, '_').toLowerCase();
+    const nombreFinal = `${Date.now()}_${nombreLimpio}`;
+    cb(null, nombreFinal);
   }
 });
 
@@ -23,24 +30,25 @@ app.use(express.json());
 // Ruta para añadir vehículo
 app.post('/vehiculos', upload.single('imagen'), (req, res) => {
   const {
-    marca,
-    modelo,
-    año,
-    precio,
-    estado,
-    descripcion,
-    velocidad,
-    matricula,
-    color
+    marca = '',
+    modelo = '',
+    año = '',
+    precio = '',
+    estado = 'disponible',
+    descripcion = '',
+    velocidad = '',
+    matricula = '',
+    color = ''
   } = req.body;
 
-  const imagen = req.file ? '/img/coches/' + req.file.filename : null;
+  const imagen = req.file ? `/img/coches/${req.file.filename}` : null;
 
   const sql = `
     INSERT INTO vehiculos (
-      marca, modelo, año, precio, imagen, estado, descripcion,
-      velocidad, matricula, color
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      marca, modelo, año, precio, imagen, estado,
+      descripcion, velocidad, matricula, color
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const valores = [
@@ -50,7 +58,7 @@ app.post('/vehiculos', upload.single('imagen'), (req, res) => {
     precio,
     imagen,
     estado,
-    descripcion || '',
+    descripcion,
     velocidad,
     matricula,
     color
@@ -61,7 +69,6 @@ app.post('/vehiculos', upload.single('imagen'), (req, res) => {
       console.error('❌ Error al guardar vehículo:', err.message);
       return res.status(500).json({ success: false, error: err.message });
     }
-
     res.json({ success: true, id: this.lastID });
   });
 });

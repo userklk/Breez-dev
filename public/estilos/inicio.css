@@ -4,7 +4,7 @@
 }
 body
 {
-	background-color: #2c2b2b;
+	background-color: #1f1e1e;
 	font-family: "Maven Pro", sans-serif;
 	color: #fff;
 	box-sizing: border-box;
@@ -73,7 +73,7 @@ body
 	background-size:  cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	height: 38rem;
+	height: 45rem;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -132,6 +132,7 @@ body
   
   .bloque-par {
 	display: flex;
+	background-color: rgba(37, 39, 41, 0);
 	gap: 4.1rem;
 	justify-content: center;
   }
@@ -139,8 +140,8 @@ body
   /* Las cartas ahora son solo contenedores para la imagen completa */
   .carta-izquierda,
   .carta-derecha {
-	width: 740px;
-	height: 530px;
+	width: 640px;
+	height: 420px;
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -255,17 +256,28 @@ pointer-events: none;
 	background-color: #2a2626;
 	color: var(--blanco);
 	text-align: center;
-	padding: 1rem 0;
+	padding: 3rem 0;
 	font-size: 0.9rem;
 }
 .span-div{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-background-color: #0b071b;
+background-color: #000000;
 	color: #ffffff;
 	padding: 0.4rem 0;
+	border-radius: 1rem;
 	font-weight: bold;
 	margin: 0;
-	box-shadow: 0 0 8px #c93c04b6, 0 0 6px #d85b5b, 0 0 6px #ff3c3c80;
+	box-shadow: 0 0 px #1f1e1eb6, 0 0 6px #d85b5b, 0 0 6px #ff3c3c80;
+}
+.descbre-catalogo{
+	font-size: 1.2rem;
+	color: #dfded8;
+	background-color: rgba(0, 0, 0, 0.295);
+	text-align: left;
+	margin-right: 50%;
+	padding: 1rem 2rem;
+	border-radius: 1rem;
+	box-shadow: 0 0 6px #141414, 0 0 8px #5a0101, 0 0 15px #373537, 0 0 10px #313232;
 }
