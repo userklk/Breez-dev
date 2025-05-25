@@ -3,9 +3,9 @@ document.getElementById('form-nuevo-coche').addEventListener('submit', e => {
   e.preventDefault();
 
   const form = e.target;
-  const formData = new FormData(form); // Captura todo: texto + imagen
+  const formData = new FormData(form);
 
-  // Validar imagen si se quiere (opcional)
+  // Validar imagen
   const archivo = form.imagen.files[0];
   if (archivo && !archivo.type.startsWith('image/')) {
     alert('❌ El archivo debe ser una imagen válida.');

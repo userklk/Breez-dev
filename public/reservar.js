@@ -9,12 +9,11 @@ fetch(`/vehiculos`)
       return (document.getElementById("detalle-coche").textContent =
         "Coche no encontrado");
 
-    // ✅ Establecer imagen como fondo del body
+
     const body = document.getElementById("body-reservar");
     body.style.backgroundImage = `url('${coche.imagen}')`;
     body.classList.add("fondo-coche");
 
-    // ✅ Mostrar la info del coche
     document.getElementById("detalle-coche").innerHTML = `
   <div class="info-carta">
     <div class="carta-izquierda">
@@ -102,14 +101,14 @@ let galeriaAbierta = false;
 window.addEventListener('wheel', (e) => {
   const galeria = document.getElementById('galeria-oculta');
 
-  // Scroll arriba → mostrar galería
+  // Scroll arriba mas fotos
   if (!galeriaAbierta && e.deltaY > 0) {
     galeriaAbierta = true;
     mostrarGaleria();
     return;
   }
 
-  // Scroll abajo → ocultar si está abierta
+  // inversa
   if (galeriaAbierta && e.deltaY < 0) {
     galeriaAbierta = false;
     ocultarGaleria();
