@@ -1,9 +1,9 @@
 // Protección: solo admins
-const empleado = JSON.parse(localStorage.getItem('empleado'));
-if (!empleado || !empleado.email) {
-  alert('Acceso denegado. Inicia sesión como administrador.');
-  window.location.href = 'admin.html';
-}
+//const empleado = JSON.parse(localStorage.getItem('empleado'));
+//if (!empleado || !empleado.email) {
+//  alert('Acceso denegado. Inicia sesión como administrador.');
+//  window.location.href = 'admin.html';
+//}
 
 // Subida y guardado
 document.getElementById('form-nuevo-coche').addEventListener('submit', e => {
