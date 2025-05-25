@@ -199,6 +199,52 @@ app.put('/vehiculos/:id', (req, res) => {
     res.json({ success: true, mensaje: "Vehículo actualizado correctamente" });
   });
 });
+// =======================
+// RESERVA
+// =======================
+app.post('/reservas', (req, res) => {
+  const {
+    nombre_conductor,
+    email,
+    dni,
+    modelo_coche,
+    fecha_inicio,
+    fecha_fin,
+    entrega,
+    recogida
+  } = req.body;
+
+  const estado = "pendiente"; // puedes personalizar esto
+
+  const sql = `
+    INSERT INTO reservas (
+      nombre_conductor, email, dni, modelo_coche, fecha_inicio,
+      fecha_fin, entrega, recogida, estado
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const valores = [
+    nombre_conductor,
+    email,
+    dni,
+    modelo_coche,
+    fecha_inicio,
+    fecha_fin,
+    entrega,
+    recogida,
+    estado
+  ];
+
+  db.run(sql, valores, function (err) {
+    if (err) {
+      console.error('❌ Error al guardar reserva:', err.message);
+      res.status(500).send('Error al guardar la reserva');
+    } else {
+      res.send('✅ Solicitud guardada correctamente');
+    }
+  });
+});
+
 
 // =======================
 // INICIO DEL SERVIDOR
