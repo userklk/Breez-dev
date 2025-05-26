@@ -244,6 +244,40 @@ app.post('/reservas', (req, res) => {
     }
   });
 });
+// =======================
+// SOLICITUDES
+// =======================
+// =======================
+// OBTENER TODAS LAS RESERVAS
+// =======================
+app.get('/reservas', (req, res) => {
+  db.all('SELECT * FROM reservas ORDER BY id DESC', [], (err, rows) => {
+    if (err) {
+      console.error('❌ Error al obtener reservas:', err.message);
+      res.status(500).send('Error al consultar reservas');
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+// =======================
+// ACTUALIZAR ESTADO DE UNA RESERVA
+// =======================
+app.put('/reservas/:id', (req, res) => {
+  const id = req.params.id;
+  const { estado } = req.body;
+
+  const sql = `UPDATE reservas SET estado = ? WHERE id = ?`;
+
+  db.run(sql, [estado, id], function (err) {
+    if (err) {
+      console.error('❌ Error al actualizar estado de reserva:', err.message);
+      return res.status(500).send('Error al actualizar');
+    }
+    res.send('✅ Estado actualizado');
+  });
+});
 
 
 // =======================
