@@ -30,10 +30,9 @@ document.getElementById("registro-form").addEventListener("submit", function (e)
 		return res.text();
 	  })
 	  .then(msg => {
-		// alert(`✅ ${msg}`);
+
 		document.getElementById("registro-form").reset();
-	  
-		// Redirigir a login.html después de 0.2 segundo 
+
 		setTimeout(() => {
 		  window.location.href = 'login.html';
 		}, 200);

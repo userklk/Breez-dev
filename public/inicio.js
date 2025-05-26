@@ -1,15 +1,14 @@
 let vehiculos = [];
 let indiceActual = 0;
-const paso = 2; // cuántos mostrar por clic (2 cartas = 4 vehículos si son pares)
+const paso = 2; 
 const catalogo = document.getElementById('catalogo');
 const btnVerMas = document.getElementById('ver-mas');
 
-// Cargar todos los vehículos una sola vez
 fetch('/vehiculos')
   .then(res => res.json())
   .then(data => {
     vehiculos = data;
-    mostrarVehiculos(4); // mostramos los 4 primeros al inicio
+    mostrarVehiculos(4); 
   });
 
 function mostrarVehiculos(cantidad) {
@@ -38,7 +37,6 @@ function mostrarVehiculos(cantidad) {
 
     catalogo.appendChild(bloque);
   }
-
   indiceActual = fin;
 
   // Si ya no hay más coches, ocultamos el botón
@@ -46,8 +44,7 @@ function mostrarVehiculos(cantidad) {
     btnVerMas.style.display = 'none';
   }
 }
-
-// Al hacer clic en “Ver más”
+//VER mas
 btnVerMas.addEventListener('click', () => {
   mostrarVehiculos(paso);
 });

@@ -3,7 +3,7 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Obtener los valores del formulario
+    // Obtener del formulario
     const nombre = document.getElementById("nombre").value.trim();
     const password = document.getElementById("password").value.trim();
     const mensaje = document.getElementById("mensaje");
@@ -15,7 +15,7 @@ document
       return;
     }
 
-    // Enviar solicitud al backend
+    // Enviar solicitud al server
     fetch("/login", {
       method: "POST",
       headers: {
@@ -26,13 +26,12 @@ document
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          // Guardar en localStorage (opcional)
+          // Guardar en localStorage 
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
 
-          // Guardar usuario (opcional)
+          // Guardar usuario
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
 
-          // 👉 AÑADE ESTA LÍNEA:
           window.location.href = "inicio.html";
         } else {
         }
