@@ -207,43 +207,55 @@ app.post('/reservas', (req, res) => {
     nombre_conductor,
     email,
     dni,
-    modelo_coche,
+    modelo,          
     fecha_inicio,
     fecha_fin,
     entrega,
-    recogida
+    recogida,
+    matricula,
+    id_coche         
   } = req.body;
 
-  const estado = "pendiente"; // puedes personalizar esto
+  const estado = 'pendiente';
 
   const sql = `
     INSERT INTO reservas (
-      nombre_conductor, email, dni, modelo_coche, fecha_inicio,
-      fecha_fin, entrega, recogida, estado
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      nombre_conductor,
+      email,
+      dni,
+      modelo_coche,
+      fecha_inicio,
+      fecha_fin,
+      entrega,
+      recogida,
+      estado,
+      matricula
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const valores = [
     nombre_conductor,
     email,
     dni,
-    modelo_coche,
+    modelo,
     fecha_inicio,
     fecha_fin,
     entrega,
     recogida,
-    estado
+    estado,
+    matricula
   ];
 
   db.run(sql, valores, function (err) {
     if (err) {
       console.error('❌ Error al guardar reserva:', err.message);
-      res.status(500).send('Error al guardar la reserva');
-    } else {
-      res.send('✅ Solicitud guardada correctamente');
+      return res.status(500).send('Error al guardar la reserva');
     }
+
+    res.send('✅ Reserva guardada correctamente');
   });
 });
+
 // =======================
 // SOLICITUDES
 // =======================

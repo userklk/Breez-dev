@@ -48,6 +48,7 @@ fetch(`/vehiculos`)
                 <label for="modelo">Modelo de coche:</label>
                 <input type="text" id="modelo" name="modelo" value="${coche.modelo}" readonly />
                 <input type="hidden" id="id_coche" name="id_coche" value="${coche.id}" />
+                <input type="hidden" id="matricula" name="matricula" value="${coche.matricula}" />
               </div>
 
               <div>
@@ -99,12 +100,13 @@ fetch(`/vehiculos`)
         nombre_conductor: document.getElementById('nombre').value,
         email: document.getElementById('correo').value,
         dni: document.getElementById('dni').value,
+        modelo: document.getElementById('modelo').value,
+        matricula: document.getElementById('matricula').value,
         fecha_inicio: document.getElementById('fecha-reserva').value,
         fecha_fin: document.getElementById('fecha-entrega').value,
         entrega: document.getElementById('localizacion-entrega').value,
         recogida: document.getElementById('localizacion-recogida').value,
-        id_coche: document.getElementById('id_coche').value,
-        modelo: document.getElementById('modelo').value
+        id_coche: document.getElementById('id_coche').value
       };
 
       fetch('/reservas', {
@@ -115,10 +117,10 @@ fetch(`/vehiculos`)
         body: JSON.stringify(reserva)
       })
         .then(res => res.text())
-.then(mensaje => {
-  alert(mensaje); 
-  form.reset();
-})
+        .then(mensaje => {
+          alert(mensaje);
+          form.reset();
+        })
 
         .catch(err => {
           alert('❌ Error en la solicitud: ' + err.message);

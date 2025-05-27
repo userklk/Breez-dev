@@ -28,11 +28,12 @@ function mostrarPagina(pagina) {
       <td>${reserva.nombre_conductor}</td>
       <td>${reserva.email}</td>
       <td>${reserva.dni}</td>
-      <td>${reserva.modelo_coche || "-"}</td>
+      <td>${reserva.modelo_coche }</td>
       <td>${reserva.fecha_inicio}</td>
       <td>${reserva.fecha_fin}</td>
       <td>${reserva.entrega}</td>
       <td>${reserva.recogida}</td>
+      <td>${reserva.matricula}</td>
       <td class="color-estado">${reserva.estado}</td>
       <td>
         <button onclick="cambiarEstado(${reserva.id}, 'aceptada')">Aceptar</button>

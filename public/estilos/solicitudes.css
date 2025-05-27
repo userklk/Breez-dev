@@ -178,7 +178,7 @@ body {
 
 #tabla-solicitudes th,
 #tabla-solicitudes td {
-  padding: 1.2rem 1.5rem;
+  padding: 1.5rem 1.2rem;
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
