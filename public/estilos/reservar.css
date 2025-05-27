@@ -2,8 +2,8 @@
 	--main-color: #131313;
 	--blanco: #ffffff;
 }
-body
-{
+
+body {
 	background-color: #131313;
 	font-family: "Maven Pro", sans-serif;
 	color: #fff;
@@ -11,15 +11,16 @@ body
 	margin: 0;
 	padding: 0;
 }
+
 body.fondo-coche {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	backdrop-filter: blur(2px);
-	
-  }
-  
-.header{
+
+}
+
+.header {
 	/* background-color: #f8f9fa; */
 	text-align: center;
 	display: flex;
@@ -29,20 +30,21 @@ body.fondo-coche {
 	z-index: 5;
 	margin: 0;
 }
-.logo{
+
+.logo {
 	height: 110px;
 	width: auto;
 	position: relative;
 
 }
-.logo-breez
-{
+
+.logo-breez {
 	width: 100%;
 	height: 100%;
 	box-shadow: 0 0 6px #841111, 0 0 2px #5a0101, 0 0 5px #373537, 0 0 4px #313232;
 }
-.navegacion
-{
+
+.navegacion {
 	display: flex;
 	align-items: center;
 	justify-content: right;
@@ -53,7 +55,9 @@ body.fondo-coche {
 	width: 100%;
 	padding-right: 0.5rem;
 }
-.link-nav, .btn-llamar{
+
+.link-nav,
+.btn-llamar {
 	text-decoration: none;
 	color: var(--blanco);
 	font-family: "Maven Pro", sans-serif;
@@ -64,7 +68,8 @@ body.fondo-coche {
 	transition: all 0.3s ease-in-out;
 	z-index: 100;
 }
-.btn-llamar{
+
+.btn-llamar {
 	background-color: #D85B5B;
 	color: #FFFFFF;
 	border: 2px solid #D85B5B;
@@ -72,7 +77,8 @@ body.fondo-coche {
 	border-radius: 2rem;
 	padding: 0.5rem 2.3rem;
 }
-#detalle-coche{
+
+#detalle-coche {
 	/* overflow: hidden; */
 	box-sizing: border-box;
 	/* margin-top: 7%; */
@@ -85,12 +91,13 @@ body.fondo-coche {
 	height: 100%;
 	/* border-radius: 1rem; */
 }
-.info-carta{
+
+.info-carta {
 	background-color: #2828287c;
 	width: 97%;
 	max-height: max-content;
 	display: flex;
-	
+
 	justify-content: center;
 	align-items: center;
 	/* margin: 1rem 0 ; */
@@ -98,8 +105,9 @@ body.fondo-coche {
 	box-sizing: border-box;
 	/* overflow: hidden; */
 	border-radius: 1rem;
-	padding: 1rem 0 2rem 0;	
+	padding: 1rem 0 2rem 0;
 }
+
 .carta-derecha {
 	width: 40%;
 	max-height: max-content;
@@ -107,9 +115,10 @@ body.fondo-coche {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	
+
 	/* box-sizing: border-box; */
 }
+
 .carta-izquierda {
 	position: relative;
 	top: 0;
@@ -125,17 +134,17 @@ body.fondo-coche {
 	/* border-radius: 1rem; */
 
 	/* border-radius: 10px 0 0 10px; */
-  }
-  
-  .img-fondo {
+}
+
+.img-fondo {
 	width: 97%;
 	height: fit-content();
 	padding: 1% 0;
-	border-radius:2rem;
+	border-radius: 2rem;
 
-  }
-  
-  .overlay-info {
+}
+
+.overlay-info {
 	position: absolute;
 	z-index: 2;
 	/* margin: 4rem; */
@@ -145,19 +154,21 @@ body.fondo-coche {
 	display: flex;
 	;
 	height: 100%;
-	width:89%;
+	width: 89%;
 	flex-direction: column;
 	/* margin-top: 92%; */
 	/* gap: 0.5rem; */
 	justify-content: flex-end;
 	padding-bottom: 1rem;
-	
-  }
-.img-res{
+
+}
+
+.img-res {
 	width: 100%;
 	height: 34rem;
-	
+
 }
+
 /* .dec-infos{
 	border-left: #131313 solid 3px;
 
@@ -166,16 +177,18 @@ body.fondo-coche {
 .form-grid {
 	margin: 2rem 0;
 	display: grid;
-	grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
+	grid-template-columns: repeat(2, 1fr);
+	/* 2 columnas iguales */
 	gap: 1.5rem;
 	/* padding: 1rem; */
 }
 
-.form-grid > div {
+.form-grid>div {
 	display: flex;
 	flex-direction: column;
 }
-input{
+
+input {
 	width: 15rem;
 	height: 2rem;
 	background-color: var(--blanco);
@@ -190,16 +203,19 @@ input{
 	text-align: left;
 	padding: 0rem 0.5rem;
 }
-form > :last-child {
-	align-self: center; /* verticalmente si hay espacio */
-	margin: 0 auto;     /* centrado horizontal */
+
+form> :last-child {
+	align-self: center;
+	/* verticalmente si hay espacio */
+	margin: 0 auto;
+	/* centrado horizontal */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 }
 
-.btn-reservar{
+.btn-reservar {
 	width: 17.6rem;
 	height: 3rem;
 	background-color: #bea000;
@@ -214,20 +230,22 @@ form > :last-child {
 	/* margin: 2rem 0; */
 	letter-spacing: 2px;
 	/* margin: 0 auto;     centrado horizontal */
-	
+
 }
+
 .btn-reservar:hover {
 	background-color: var(--main-color);
 	color: var(--blanco);
 	border: 1px solid var(--blanco);
-  }
-  .form-checks{
-	display: grid;
-	grid-template-columns: repeat(1, 1fr); /* 2 columnas iguales */
-  }
+}
 
-.checkbox-label
-{
+.form-checks {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	/* 2 columnas iguales */
+}
+
+.checkbox-label {
 	margin: 0;
 	padding: 0;
 	display: flex;
@@ -235,13 +253,15 @@ form > :last-child {
 	justify-content: center;
 	font-size: 0.8rem;
 	/* padding-left: 0.4rem; */
-	
+
 }
-.checkbox-input{
+
+.checkbox-input {
 	margin: 0;
 	width: 1.1rem;
 	padding: 0;
 }
+
 /* EXTRA */
 /*  */
 .galeria-coche {
@@ -250,7 +270,7 @@ form > :last-child {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,0.95);
+	background: rgba(0, 0, 0, 0.95);
 	display: none;
 	flex-direction: column;
 	justify-content: center;
@@ -258,21 +278,30 @@ form > :last-child {
 	z-index: 999;
 	overflow-y: auto;
 	animation: fadeIn 0.6s ease forwards;
-  }
-  
-  .galeria-coche.ocultando {
+}
+
+.galeria-coche.ocultando {
 	animation: fadeOut 0.5s ease forwards;
-  }
-  
-  @keyframes fadeIn {
-	from { opacity: 0; }
-	to { opacity: 1; }
-  }
-  @keyframes fadeOut {
-	to { opacity: 0; visibility: hidden; }
-  }
-  
-  .imagenes-extra {
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	to {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.imagenes-extra {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1rem;
@@ -281,26 +310,26 @@ form > :last-child {
 	margin: 0 auto;
 	padding: 1rem;
 	grid-auto-rows: 300px;
-  }
-  
-  .imagenes-extra img {
+}
+
+.imagenes-extra img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 10px;
 	box-shadow: 0 0 10px black;
 	transition: transform 0.3s ease;
-  }
-  
-  .imagenes-extra img:hover {
+}
+
+.imagenes-extra img:hover {
 	transform: scale(1.7);
-  }
-  
-  .contenedor-galeria{
+}
+
+.contenedor-galeria {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-  }
+}

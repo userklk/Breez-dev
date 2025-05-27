@@ -9,12 +9,12 @@ document.getElementById("registro-form").addEventListener("submit", function (e)
 	  alert("El nombre es obligatorio.");
 	  return;
 	}
-  
+  // Validación simple de teléfono
 	if (!/^[0-9]{9}$/.test(telefono)) {
 	  alert("Teléfono inválido. Deben ser 9 dígitos.");
 	  return;
 	}
-  
+  // Validación simple de contraseña
 	if (password.length < 4) {
 	  alert("La contraseña debe tener al menos 4 caracteres.");
 	  return;

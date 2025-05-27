@@ -88,3 +88,8 @@ function cambiarEstado(id, nuevoEstado) {
       alert('❌ Error: ' + err.message);
     });
 }
+// Cerrar sesión
+function cerrarSesion() {
+  localStorage.removeItem('empleado');
+  window.location.href = 'admin.html';
+}

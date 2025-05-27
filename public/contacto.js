@@ -11,7 +11,7 @@ for (let i = 0; i < inputsForm.length; i++) {
     }
   });
 }
-
+//conecta con api de whatsapp con uno de nuestro admin
 function enviarMensaje() {
             const nombre = document.getElementById("nombre").value.trim();
             const telefono = document.getElementById("telefono").value.trim();

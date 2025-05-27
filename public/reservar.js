@@ -11,7 +11,7 @@ fetch(`/vehiculos`)
     const body = document.getElementById("body-reservar");
     body.style.backgroundImage = `url('${coche.imagen}')`;
     body.classList.add("fondo-coche");
-
+  //Crea un form decicadoa cada coche por tema de matricula e id
     document.getElementById("detalle-coche").innerHTML = `
       <div class="info-carta">
         <div class="carta-izquierda">
@@ -129,6 +129,7 @@ fetch(`/vehiculos`)
   });
 
 // GALERÍA
+//Con el scroll se abre y cierra la galería de imágenes extra
 let galeriaAbierta = false;
 
 window.addEventListener('wheel', (e) => {

@@ -2,8 +2,8 @@
 	--main-color: #131313;
 	--blanco: #ffffff;
 }
-body
-{
+
+body {
 	background-color: #1f1e1e;
 	font-family: "Maven Pro", sans-serif;
 	color: #fff;
@@ -12,7 +12,8 @@ body
 	padding: 0;
 
 }
-.header{
+
+.header {
 	/* background-color: #f8f9fa; */
 	text-align: center;
 	display: flex;
@@ -24,20 +25,21 @@ body
 	position: sticky;
 	top: 0;
 }
-.logo{
+
+.logo {
 	height: 130px;
 	width: auto;
 	position: relative;
 
 }
-.logo-breez
-{
+
+.logo-breez {
 	width: 100%;
 	height: 100%;
 	box-shadow: 0 0 6px #841111, 0 0 8px #5a0101, 0 0 15px #373537, 0 0 10px #313232;
 }
-.navegacion
-{
+
+.navegacion {
 	display: flex;
 	align-items: center;
 	justify-content: right;
@@ -48,7 +50,9 @@ body
 	width: 100%;
 	padding-right: 0.5rem;
 }
-.link-nav, .btn-llamar{
+
+.link-nav,
+.btn-llamar {
 	text-decoration: none;
 	color: var(--blanco);
 	font-family: "Maven Pro", sans-serif;
@@ -59,7 +63,8 @@ body
 	transition: all 0.3s ease-in-out;
 	z-index: 100;
 }
-.btn-llamar{
+
+.btn-llamar {
 	background-color: #D85B5B;
 	color: #FFFFFF;
 	border: 2px solid #D85B5B;
@@ -67,10 +72,12 @@ body
 	border-radius: 2rem;
 	padding: 0.5rem 2.3rem;
 }
+
 /* PRIMER SECCION */
-.priemro-escaparate{
-	background-image:url(/img/escaparate.png); ;
-	background-size:  cover;
+.priemro-escaparate {
+	background-image: url(/img/escaparate.png);
+	;
+	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 40rem;
@@ -81,6 +88,7 @@ body
 	gap: 1rem;
 	z-index: -10;
 	top: 0;
+
 	&::before {
 		content: "";
 		position: absolute;
@@ -91,10 +99,12 @@ body
 		background-color: rgba(27, 26, 26, 0.8);
 		z-index: -1;
 	}
+
 	position: absolute;
 
 }
-.imagen-escaparate{
+
+.imagen-escaparate {
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -103,7 +113,8 @@ body
 
 
 }
-.bloque-imagen-escaparate{
+
+.bloque-imagen-escaparate {
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -112,7 +123,8 @@ body
 	justify-content: center;
 	gap: 1rem;
 }
-.titulo-inicio{
+
+.titulo-inicio {
 	font-family: "Maven Pro", sans-serif;
 	font-size: 3.5rem;
 	color: var(--blanco);
@@ -122,84 +134,90 @@ body
 	text-align: center;
 	text-shadow: 0 0 1px #54136e, 0 0 0px #5a0101, 0 0 2px #301530, 0 0 4px #313232;
 }
+
 .catalogo {
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
 	padding: 30% 2rem 2rem 2rem;
 
-  }
-  
-  .bloque-par {
+}
+
+.bloque-par {
 	display: flex;
 	background-color: rgba(37, 39, 41, 0);
 	gap: 4.1rem;
 	justify-content: center;
-  }
-  
-  /* Las cartas ahora son solo contenedores para la imagen completa */
-  .carta-izquierda,
-  .carta-derecha {
+}
+
+/* Las cartas ahora son solo contenedores para la imagen completa */
+.carta-izquierda,
+.carta-derecha {
 	width: 640px;
 	height: 420px;
 	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	position: relative;
-	box-shadow:  0 0 10px 4px rgba(100, 90, 110, 0.533);
-  }
-  
-  /* Imagen de fondo */
-  .carta-izquierda img,
-  .carta-derecha img {
-	background-color: #000; /* por si la imagen no carga */
-  }
-  
-  /* Imagen que llena toda la carta */
-  .carta-izquierda img,
+	box-shadow: 0 0 10px 4px rgba(100, 90, 110, 0.533);
+}
+
+/* Imagen de fondo */
+.carta-izquierda img,
 .carta-derecha img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
-object-position: center center;
+	background-color: #000;
+	/* por si la imagen no carga */
+}
+
+/* Imagen que llena toda la carta */
+.carta-izquierda img,
+.carta-derecha img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	object-position: center center;
 }
 
 .carta-derecha::after,
 .carta-izquierda::after {
-content: "";
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.3); 
-pointer-events: none;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	pointer-events: none;
 }
-  
-  .carta-izquierda .info-carta,
+
+.carta-izquierda .info-carta,
 .carta-derecha .info-carta {
-  position: absolute; /* ← esto hace que se superponga */
-  bottom: 0;           /* ← se pega a la parte inferior */
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  margin-top: 40%;
-  padding: 0 0 2rem 2rem;
-  text-align: left;
-  box-sizing: border-box;
-  opacity: 0.9; 
+	position: absolute;
+	/* ← esto hace que se superponga */
+	bottom: 0;
+	/* ← se pega a la parte inferior */
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	margin-top: 40%;
+	padding: 0 0 2rem 2rem;
+	text-align: left;
+	box-sizing: border-box;
+	opacity: 0.9;
 	z-index: 100;
 }
-.carta{
+
+.carta {
 	overflow: hidden;
 	box-sizing: border-box;
 }
+
 .carta-unica {
 	margin: 0 auto;
-  }
-  
-.estado-carta{
+}
+
+.estado-carta {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -209,8 +227,9 @@ pointer-events: none;
 	font-size: 0.9rem;
 	border-radius: 0 0 0 10px;
 	z-index: 10;
-}  
-.Texto-inf-carta{
+}
+
+.Texto-inf-carta {
 	margin-top: 50%;
 }
 
@@ -224,7 +243,8 @@ pointer-events: none;
 	filter: brightness(1.4);
 
 }
-.btn-ver-mas{
+
+.btn-ver-mas {
 	background-color: #FFFFFF;
 	color: #D85B5B;
 	border: 2px solid #FFFFFF;
@@ -242,13 +262,14 @@ pointer-events: none;
 	margin-top: 1rem;
 
 }
-.btn-ver-mas:hover{
+
+.btn-ver-mas:hover {
 	background-color: #D85B5B;
 	color: #FFFFFF;
 	border-color: #D85B5B;
 }
 
-.footer{
+.footer {
 	margin-top: 5rem;
 	position: absolute;
 	/* bottom: 0; */
@@ -259,11 +280,12 @@ pointer-events: none;
 	padding: 3rem 0;
 	font-size: 0.9rem;
 }
-.span-div{
+
+.span-div {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-background-color: #000000;
+	background-color: #000000;
 	color: #ffffff;
 	padding: 0.4rem 0;
 	border-radius: 1rem;
@@ -271,7 +293,8 @@ background-color: #000000;
 	margin: 0;
 	box-shadow: 0 0 px #1f1e1eb6, 0 0 6px #d85b5b, 0 0 6px #ff3c3c80;
 }
-.descbre-catalogo{
+
+.descbre-catalogo {
 	font-size: 1.2rem;
 	color: #dfded8;
 	background-color: rgba(0, 0, 0, 0.295);

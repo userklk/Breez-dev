@@ -10,7 +10,8 @@ fetch('/vehiculos')
     vehiculos = data;
     mostrarVehiculos(4); 
   });
-
+//Muestra 4 vehiculos al cargar la página
+// Muestra los vehículos en bloques de 2
 function mostrarVehiculos(cantidad) {
   const fin = Math.min(indiceActual + cantidad, vehiculos.length);
 

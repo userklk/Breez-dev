@@ -11,7 +11,7 @@ document.getElementById('form-nuevo-coche').addEventListener('submit', e => {
     alert('❌ El archivo debe ser una imagen válida.');
     return;
   }
-
+  //APP VALIDA
   fetch('/vehiculos', {
     method: 'POST',
     body: formData

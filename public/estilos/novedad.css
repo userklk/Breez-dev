@@ -1,0 +1,127 @@
+:root {
+	--main-color: #131313;
+	--blanco: #ffffff;
+}
+body
+{
+	background-color: #1f1e1e;
+	font-family: "Maven Pro", sans-serif;
+	color: #fff;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+
+}
+.header{
+	/* background-color: #f8f9fa; */
+	text-align: center;
+	display: flex;
+	position: relative;
+	align-items: flex-start;
+	justify-content: space-between;
+	z-index: 5;
+	margin: 0;
+	position: sticky;
+	top: 0;
+}
+.logo{
+	height: 130px;
+	width: auto;
+	position: relative;
+
+}
+.logo-breez
+{
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 6px #841111, 0 0 8px #5a0101, 0 0 15px #373537, 0 0 10px #313232;
+}
+.navegacion
+{
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	height: 4.5rem;
+	gap: 1rem;
+	background-color: #ffffff48;
+	/* opacity: 0.5; */
+	width: 100%;
+	padding-right: 0.5rem;
+}
+.link-nav, .btn-llamar{
+	text-decoration: none;
+	color: var(--blanco);
+	font-family: "Maven Pro", sans-serif;
+	font-size: 1.1rem;
+	letter-spacing: 0.5px;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	transition: all 0.3s ease-in-out;
+	z-index: 100;
+}
+.btn-llamar{
+	background-color: #D85B5B;
+	color: #FFFFFF;
+	border: 2px solid #D85B5B;
+	margin: 0 3rem 0 1rem;
+	border-radius: 2rem;
+	padding: 0.5rem 2.3rem;
+}
+.novedad-contenedor {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: rgb(59, 58, 58);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+box-shadow: 0 0 8px #D85B5B, 0 0 6px #D85B5B, 0 0 24px #D85B5B, 0 0 12px #D85B5B;
+
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+/* box-shadow: 0 0 8px #D85B5B, 0 0 16px #D85B5B, 0 0 24px #D85B5B, 0 0 32px #D85B5B; */
+}
+
+.card-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+/* box-shadow: 0 0 8px #D85B5B, 0 0 16px #D85B5B, 0 0 24px #D85B5B, 0 0 32px #D85B5B; */
+
+}
+
+.card-info {
+  padding: 2rem;
+}
+
+.card-info h2 {
+  margin: 0 0 1rem;
+}
+
+.card-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card-info li {
+  margin: 0.5rem 0;
+}
+.boton-busqueda{
+	  background-color: #D85B5B;
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.novedad-primer-section{
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+}

@@ -19,7 +19,7 @@ fetch("/vehiculos")
 function getDatosActuales() {
   return cochesFiltrados.length ? cochesFiltrados : todosLosCoches;
 }
-
+//MUestar en la tabla de 5 en 5
 function mostrarPagina(pagina) {
   cuerpo.innerHTML = "";
   const datos = getDatosActuales();
@@ -49,7 +49,7 @@ function mostrarPagina(pagina) {
   btnAnterior.disabled = pagina === 1;
   btnSiguiente.disabled = pagina >= totalPaginas;
 }
-
+//cambiar de pagina
 btnAnterior.addEventListener("click", () => {
   if (paginaActual > 1) {
     paginaActual--;
@@ -67,7 +67,7 @@ btnSiguiente.addEventListener("click", () => {
 });
 
 let ordenActual = { campo: "id", ascendente: true };
-
+//Sort para ordenar los coches
 function ordenarPor(campo) {
   if (ordenActual.campo === campo) {
     ordenActual.ascendente = !ordenActual.ascendente;
@@ -97,7 +97,7 @@ function ordenarPor(campo) {
   mostrarPagina(paginaActual);
   aplicarFiltros();
 }
-
+//Aplica losfilytos todos de de texto
 function aplicarFiltros() {
   const idFiltro = document.getElementById('filtro-id').value.trim();
   const matFiltro = document.getElementById('filtro-matricula').value.trim().toLowerCase();
@@ -124,7 +124,7 @@ function resetFiltros() {
   paginaActual = 1;
   mostrarPagina(paginaActual);
 }
-
+//VEr para editr en el panel
 function verCoche(id) {
   const coche = todosLosCoches.find(c => c.id === id);
   if (!coche) return;
@@ -144,7 +144,7 @@ function verCoche(id) {
 
 document.getElementById('form-editar-coche').addEventListener('submit', e => {
   e.preventDefault();
-
+//Al ser actualizado el coche, se actualiza en la tabla
   const cocheActualizado = {
     id: parseInt(document.getElementById('editar-id').value),
     matricula: document.getElementById('editar-matricula').value,
@@ -191,6 +191,7 @@ document.getElementById('form-editar-coche').addEventListener('submit', e => {
       alert('Error en la solicitud: ' + err.message);
     });
 });
+//Intento de alert
 function mostrarMensaje(texto, color = '#28a745') {
   const msg = document.getElementById('mensaje-flotante');
   msg.textContent = texto;
@@ -204,4 +205,9 @@ function mostrarMensaje(texto, color = '#28a745') {
 
 function cerrarPanel() {
   document.getElementById('panel-edicion').classList.remove('visible');
+}
+// Cerrar sesión
+function cerrarSesion() {
+  localStorage.removeItem('empleado');
+  window.location.href = 'admin.html';
 }
